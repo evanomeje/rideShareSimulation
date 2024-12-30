@@ -4,20 +4,23 @@ SECONDS=0
 cd $HOME/app
 
 msg () {
-  echo -e "$1\n--------------------\n"
+  echo -e "\n$1\n--------------------\n"
 }
-
-msg "Stopping app"
-sudo pkill app
 
 msg "Pulling from GitHub"
 git pull
 
-msg "Building Go binary"
-go build
+msg "Building the 'app' image"
+sudo docker build --tag app .
 
-msg "Starting server"
-nohup sudo ./app &>/dev/null &
+msg "Stopping containers"
+sudo docker compose down
+
+msg "Starting containers"
+sudo docker compose up -d
+
+msg "Pruning stale Docker images"
+sudo docker image prune -f
 
 duration=$SECONDS
 
