@@ -9,7 +9,7 @@ import (
 )
 
 func getDrivers(w http.ResponseWriter, req *http.Request) {
-	rows, err := db.Connection.Query("SELECT: name FROM drivers")
+	rows, err := db.Connection.Query("SELECT name FROM drivers")
 	if err != nil {
 		fmt.Println(err)
 	}

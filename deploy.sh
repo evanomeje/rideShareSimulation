@@ -8,4 +8,5 @@ msg "Stopping containers"
 sudo docker compose down
 
 msg "Starting containers"
+
 sudo docker compose up -d

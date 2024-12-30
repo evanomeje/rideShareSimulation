@@ -18,3 +18,4 @@ func InitDB() {
                 fmt.Println(err)
         }
 }
+
