@@ -7,12 +7,16 @@ WORKDIR /app
 # Copy the Go module files
 COPY go.mod ./
 COPY *.go ./
+COPY go.sum ./
+
+# copy the postgres files
+COPY postgres ./postgres
 
 # Copy the static files
 COPY static ./static
 
 # Build the Go application
-RUN go build -o /app
+RUN go build -o /app/rideShareSimulation
 
 # Command to run the application
-CMD [ "/app" ]
+CMD [ "/app/rideShareSimulation" ]
