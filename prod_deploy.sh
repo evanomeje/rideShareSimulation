@@ -7,17 +7,17 @@ msg () {
   echo -e "\n$1\n--------------------\n"
 }
 
-msg "Pulling from GitHub"
-git pull
-
-msg "Building the 'app' image"
-sudo docker build --tag app .
-
 msg "Stopping containers"
 sudo docker compose down
 
 msg "Starting containers"
 sudo docker compose up -d
+
+msg "Pulling from GitHub"
+git pull
+
+msg "Building the 'app' image"
+sudo docker build --tag app .
 
 msg "Pruning stale Docker images"
 sudo docker image prune -f

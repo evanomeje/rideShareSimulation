@@ -1,22 +1,17 @@
 # Use the official Golang Alpine image as the base image
 FROM golang:1.22-alpine
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the Go module files
 COPY go.mod ./
-COPY *.go ./
 COPY go.sum ./
-
-# copy the postgres files
+COPY *.go ./
+COPY static ./static
 COPY postgres ./postgres
 
-# Copy the static files
-COPY static ./static
+RUN go build -o /main
 
-# Build the Go application
-RUN go build -o /app/rideShareSimulation
+EXPOSE 8080
 
 # Command to run the application
 CMD [ "/app/rideShareSimulation" ]
